@@ -2,8 +2,7 @@
 
 #--------------------------------------------------------
 # Prerequisite files: hosts, .gitignore
-# TODO: Create .gitignore file
-# TODO: Create ssh config file - don't upload this
+# TODO: Clean up ansible into role/setup
 # TODO: Create hooks for packages/ansible vs clean setup
 #--------------------------------------------------------
 
