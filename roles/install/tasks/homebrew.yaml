@@ -2,12 +2,12 @@
 - name: Check if homebrew installed
   stat:
     path: "/usr/local/bin/brew"
-    register: "homebrew_check"
+  register: "homebrew_check"
   
 - name: Fail if homebrew not installed
   fail:
     msg: "Homebrew seems to be missing... exiting"
-    when: not homebrew_check.stat.exists
+  when: not homebrew_check.stat.exists
 
 - name: Updating Homebrew
   homebrew:

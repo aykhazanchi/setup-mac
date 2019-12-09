@@ -3,5 +3,5 @@
   homebrew_tap:
     name: "{{ brew_taps }}"
     state: present
-    when: homebrew_check.stat.exists
+  when: homebrew_check.stat.exists
   with_items: "{{ brew_taps }}"

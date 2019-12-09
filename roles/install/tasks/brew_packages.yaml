@@ -4,5 +4,5 @@
     name: "{{ brew_packages }}"
     state: latest
     upgrade_all: "{{ upgrade }}"
-    when: homebrew_check.stat.exists
+  when: homebrew_check.stat.exists
   with_items: "{{ brew_packages }}"

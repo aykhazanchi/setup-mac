@@ -3,7 +3,7 @@
   homebrew_cask:
     name: "{{ brew_casks }}"
     state: present
+    install_options: force  # Force install because brew cask fails when app already there
     upgrade_all: "{{ upgrade }}"
-    when: homebrew_check.stat.exists
+  when: homebrew_check.stat.exists
   with_items: "{{ brew_casks }}"
-  
