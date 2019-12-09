@@ -14,8 +14,10 @@ brew_casks:
   - 'google-chrome'
   - 'iterm2'
   - 'lastpass'
-  - 'spotify)'
+  - 'spotify'
+  - 'menumeters'
   - 'vlc'
+  - 'itsycal'
   - 'spectacle'
   - 'filezilla'
   - 'android-studio'
@@ -35,6 +37,7 @@ brew_packages:
   - 'bash-completion'
   - 'autojump'
   - 'wp-cli'
+  - 'mas'
   - 'jq'
   - 'nmap'
   - 'nomad'
@@ -49,6 +52,9 @@ brew_packages:
   - 'awscli'
   - 'postgres'
   - 'ansible'
+
+mas_apps:
+  - '1091189122' # bear app
 
 downloads:
   ao:

@@ -10,6 +10,9 @@
 - name: brew cask packages install
   include: brew_casks.yaml
 
+- name: mas apps install
+  include: mas.yaml
+  
 - name: Setup downloads
   include: downloads.yaml
 

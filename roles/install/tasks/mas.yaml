@@ -1,0 +1,7 @@
+---
+- name: install mas apps
+  command: mas install "{{ item }}"
+  with_items: "{{ mas_apps }}"
+
+#- name: mas upgrade all
+#  command: mas upgrade
