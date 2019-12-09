@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+# Inspired by https://daemonza.github.io/2017/03/06/using-ansible-to-automate-my-macbook-setup/
+
 #--------------------------------------------------------
 # Prerequisite files: hosts, .gitignore
 # TODO: Clean up ansible into role/setup
