@@ -1,50 +1,82 @@
-# Setup bash-it
+---
 # Setup ssh keys using lastpass-cli
 # Setup vimrc
 # Setup git gitconfig gitignore
 # Terminator dotfiles
 
 # Install bash-it
-git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
-sh ~/.bash_it/install.sh
+- name: Get bash-it
+  git:
+    repo: 'https://github.com/Bash-it/bash-it.git'
+    dest: "{{ general.user_home }}/.bash_it"
+    depth: 1
+
+- name: Install bash-it
+  command: "echo y | sh {{ general.user_home }}/.bash_it/install.sh"
+  args:
+    creates: "{{ general.user_home }}/.bash_profile.bak"
 
 # Set zork theme
-sed -i '' "s/BASH_IT_THEME='bobby'/BASH_IT_THEME='zork'/g" ~/.bash_profile
+- name: Set bash-it theme to zork
+  replace: 
+    path: "{{ general.user_home }}/.bash_profile"
+    regexp: "BASH_IT_THEME='bobby'"
+    replace: "BASH_IT_THEME='zork'"
+    
+# Source .bashrc into .bash_profile
+# This needs to be cleaned up
+- name: Create new .bash_profile and source .bashrc
+  shell: |
+    touch "{{ general.user_home }}"/.bashrc
+    echo 'if [ -f "{{ general.user_home }}"/.bashrc ]; then' >> "{{ general.user_home }}"/.bash_profile_new
+    echo '  . "{{ general.user_home }}"/.bashrc' >> "{{ general.user_home }}"/.bash_profile_new
+    echo 'fi' >> "{{ general.user_home }}"/.bash_profile_new
+    echo '' >> "{{ general.user_home }}"/.bash_profile_new
+    cat "{{ general.user_home }}"/.bash_profile >> "{{ general.user_home }}"/.bash_profile_new
+    rm "{{ general.user_home }}"/.bash_profile
+    mv "{{ general.user_home }}"/.bash_profile_new "{{ general.user_home }}"/.bash_profile
+    source "{{ general.user_home }}"/.bash_profile
+  args:
+    creates: "{{ general.user_home }}/.bashrc"
 
-# Source .bashrc to port between linux and mac
-echo 'if [ -f ~/.bashrc ]; then' >> ~/.bash_profile_new
-echo '  . ~/.bashrc' >> ~/.bash_profile_new
-echo 'fi' >> ~/.bash_profile_new
-echo '' >> ~/.bash_profile_new
-cat ~/.bash_profile >> ~/.bash_profile_new
-rm ~/.bash_profile
-mv ~/.bash_profile_new ~/.bash_profile
-source ~/.bash_profile
+# Get tgenv (not maintained in brew)
+- name: Get tgenv
+  git:
+    repo: 'https://github.com/cunymatthieu/tgenv.git'
+    dest: '{{ general.user_home }}/.tgenv'
 
+- name: Set PATHs and source .bashrc
+  shell: |
+    echo 'export PATH="$HOME/.tgenv/bin:$PATH"' >> "{{ general.user_home }}"/.bashrc
+    echo 'export PATH="$HOME/.tfenv/bin:$PATH"' >> "{{ general.user_home }}"/.bashrc
+    echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> "{{ general.user_home }}"/.bashrc
+    source "{{ general.user_home }}"/.bashrc
 
-# Install tgenv (not in brew)
-git clone https://github.com/cunymatthieu/tgenv.git ~/.tgenv
+- name: Setup tfenv
+  command: tfenv install latest
 
-# Set PATHs
-echo 'export PATH="$HOME/.tgenv/bin:$PATH"' >> ~/.bashrc
-echo 'export PATH="$HOME/.tfenv/bin:$PATH"' >> ~/.bashrc
-echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> ~/.bashrc
+- name: Setup tgenv
+  command: tgenv install latest
 
-tgenv install latest
-tfenv install latest
+- name: Setup jenv
+  shell: |
+    "echo 'eval \"$(jenv init -)\"' >> {{ general.user_home }}/.bashrc"
+    jenv enable-plugin export
+    jenv add $(/usr/libexec/java_home)
 
-echo 'eval "$(jenv init -)"' >> ~/.bashrc
-jenv enable-plugin export
-jenv add $(/usr/libexec/java_home)
+- name: Create .ssh if it doesn't exist
+  file:
+    state: directory
+    path: "{{ general.user_home }}/.ssh"
+    mode: 0700
 
-# Setup ssh
-mkdir ~/.ssh
-chmod 0700 ~/.ssh
-
-echo 'Host *' >> ~/.ssh/config
-echo '  AddKeysToAgent yes' >> ~/.ssh/config
-echo '  UseKeychain yes' >> ~/.ssh/config
-echo '  IdentityFile ~/.ssh/akzn' >> ~/.ssh/config
-echo '  ServerAliveInterval 60' >> ~/.ssh/config
-
-eval "$(ssh-agent -s)"
+- name: setup ssh config
+  shell: |
+    touch {{ general.user_home }}/.ssh/config
+    echo 'Host *' > {{ general.user_home }}/.ssh/config
+    echo '  AddKeysToAgent yes' >> {{ general.user_home }}/.ssh/config
+    echo '  UseKeychain yes' >> {{ general.user_home }}/.ssh/config
+    echo '  ServerAliveInterval 60' >> {{ general.user_home }}/.ssh/config
+    eval "$(ssh-agent -s)"
+  args:
+    creates: "{{ general.user_home }}/.ssh/config"

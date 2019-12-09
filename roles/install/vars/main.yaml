@@ -1,5 +1,6 @@
 ---
 general:
+  login_user: akzn
   user_home: "{{ lookup('env','HOME') }}"
 
 upgrade: false
@@ -52,4 +53,4 @@ downloads:
   ao:
     name: Ao
     url: https://github.com/klaussinani/ao/releases/download/v6.9.0/Ao-6.9.0.dmg
-    dest: "{{general.home}}/Downloads/Ao-6.9.0.dmg"
+    dest: "{{general.user_home}}/Downloads/Ao-6.9.0.dmg"
