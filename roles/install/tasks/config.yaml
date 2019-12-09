@@ -47,6 +47,7 @@
 
 - name: Set PATHs and source .bashrc
   shell: |
+    echo '[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh' >> "{{ general.user_home }}"/.bashrc
     echo 'export PATH="$HOME/.tgenv/bin:$PATH"' >> "{{ general.user_home }}"/.bashrc
     echo 'export PATH="$HOME/.tfenv/bin:$PATH"' >> "{{ general.user_home }}"/.bashrc
     echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> "{{ general.user_home }}"/.bashrc
@@ -60,7 +61,7 @@
 
 - name: Setup jenv
   shell: |
-    "echo 'eval \"$(jenv init -)\"' >> {{ general.user_home }}/.bashrc"
+    echo 'eval "$(jenv init -)"' >> {{ general.user_home }}/.bashrc
     jenv enable-plugin export
     jenv add $(/usr/libexec/java_home)
 

@@ -33,6 +33,7 @@ brew_casks:
 
 brew_packages:
   - 'bash-completion'
+  - 'autojump'
   - 'wp-cli'
   - 'jq'
   - 'nmap'
