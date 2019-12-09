@@ -1,0 +1,17 @@
+- name: setup homebrew
+  include: homebrew.yaml
+
+- name: brew taps setup
+  include: brew_taps.yaml
+
+- name: brew packages install
+  include: brew_packages.yaml
+
+- name: brew cask packages install
+  include: brew_casks.yaml
+
+- name: Setup downloads
+  include: downloads.yaml
+
+- name: Run through configurations
+  include: config.yaml

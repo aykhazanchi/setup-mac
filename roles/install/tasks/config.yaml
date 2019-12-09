@@ -1,21 +1,8 @@
-#! /usr/bin/env bash
-
-#--------------------------------------------------------
-# Prerequisite files: hosts, .gitignore
-# TODO: Clean up ansible into role/setup
-# TODO: Create hooks for packages/ansible vs clean setup
-#--------------------------------------------------------
-
-# Start
-echo "--- Starting clean setup --- "
-mkdir -p ~/workspace/setup
-
-# Get the repo
-cd ~/workspace
-git clone git@github.com:aykhazanchi/setup-mac.git .
-
-# Install xcode
-xcode-select --install
+# Setup bash-it
+# Setup ssh keys using lastpass-cli
+# Setup vimrc
+# Setup git gitconfig gitignore
+# Terminator dotfiles
 
 # Install bash-it
 git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
@@ -34,23 +21,6 @@ rm ~/.bash_profile
 mv ~/.bash_profile_new ~/.bash_profile
 source ~/.bash_profile
 
-# Install homebrew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-# Install pip3 and python3 from brew
-brew install python3
-brew install pip3
-
-# Install ansible from pip
-pip3 install --user ansible
-pip3 install --upgrade setuptools
-pip3 install --upgrade pip
-pip3 install virtualenv
-pip3 install virtualenvwrapper
-
-# Run ansible to setup mac
-cd ~/workspace/setup-mac
-ansible-playbook -i hosts packages.yaml --verbose
 
 # Install tgenv (not in brew)
 git clone https://github.com/cunymatthieu/tgenv.git ~/.tgenv

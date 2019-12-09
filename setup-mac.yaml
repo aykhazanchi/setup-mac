@@ -1,0 +1,5 @@
+---
+- hosts: mac
+  remote_user: akzn
+  roles:
+    - install

@@ -1,0 +1,55 @@
+---
+general:
+  user_home: "{{ lookup('env','HOME') }}"
+
+upgrade: false
+
+brew_taps:
+  - 'homebrew/cask-versions'
+  - 'homebrew/cask-fonts'
+
+brew_casks:
+  - 'firefox'
+  - 'google-chrome'
+  - 'iterm2'
+  - 'lastpass'
+  - 'spotify)'
+  - 'vlc'
+  - 'spectacle'
+  - 'filezilla'
+  - 'android-studio'
+  - 'visual-studio-code'
+  - 'java'
+  - 'psequel'
+  - 'aws-vault'
+  - 'docker'
+  - 'minikube'
+  - 'simplenote'
+  - 'vagrant'
+  - 'vagrant-manager'
+  - 'virtualbox'
+  - 'virtualbox-extension-pack'
+
+brew_packages:
+  - 'bash-completion'
+  - 'wp-cli'
+  - 'jq'
+  - 'nmap'
+  - 'nomad'
+  - 'pipenv'
+  - 'rbenv'
+  - 'tfenv'
+  - 'jenv'
+  - 'tree'
+  - 'wget'
+  - 'tree'
+  - 'htop'
+  - 'awscli'
+  - 'postgres'
+  - 'ansible'
+
+downloads:
+  ao:
+    name: Ao
+    url: https://github.com/klaussinani/ao/releases/download/v6.9.0/Ao-6.9.0.dmg
+    dest: "{{general.home}}/Downloads/Ao-6.9.0.dmg"
