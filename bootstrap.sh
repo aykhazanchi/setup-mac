@@ -14,7 +14,7 @@ mkdir -p ~/workspace/setup
 
 # Get the repo
 cd ~/workspace
-git clone git@github.com:aykhazanchi/setup-mac.git .
+git clone https://github.com/aykhazanchi/setup-mac.git .
 
 # Install xcode
 xcode-select --install
