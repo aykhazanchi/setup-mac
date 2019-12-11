@@ -27,6 +27,9 @@ git clone https://github.com/aykhazanchi/setup-mac.git .
 # Install homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+# Install python3
+brew install python
+
 pip3 install --upgrade pip
 pip3 install --upgrade setuptools
 pip3 install --user ansible
