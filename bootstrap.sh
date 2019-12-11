@@ -10,27 +10,31 @@
 
 # Start
 echo "--- Starting clean setup --- "
-mkdir -p ~/workspace/setup
+
+# Install xcode (needed for git)
+xcode-select --install
+
+while [[ ! -f "/usr/bin/xcode-select" ]]; do
+  echo "Waiting on xcode tools to finish install..."
+  sleep 10
+done
 
 # Get the repo
+mkdir -p ~/workspace/
 cd ~/workspace
 git clone https://github.com/aykhazanchi/setup-mac.git .
-
-# Install xcode
-xcode-select --install
 
 # Install homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# Install pip3 and python3 from brew
-brew install python3
-brew install pip3
-
 pip3 install --upgrade pip
-pip3 install --user ansible
 pip3 install --upgrade setuptools
+pip3 install --user ansible
 pip3 install virtualenv
 pip3 install virtualenvwrapper
+
+echo 'export PATH="$HOME/Library/Python/3.7/bin:$PATH"' >> $HOME/.bash_profile
+source $HOME/.bash_profile
 
 # Run ansible to setup mac
 cd ~/workspace/setup-mac
