@@ -1,10 +1,4 @@
 ---
-# Setup ssh keys using lastpass-cli
-# Setup vimrc
-# Setup git gitconfig gitignore
-# Terminator dotfiles
-
-# Install bash-it
 - name: Get bash-it
   git:
     repo: 'https://github.com/Bash-it/bash-it.git'
@@ -12,34 +6,42 @@
     depth: 1
 
 - name: Install bash-it
-  command: "echo y | sh {{ general.user_home }}/.bash_it/install.sh"
-  args:
-    creates: "{{ general.user_home }}/.bash_profile.bak"
+  command: "sh {{ general.user_home }}/.bash_it/install.sh --silent"
+  ignore_errors: yes
 
-# Set zork theme
 - name: Set bash-it theme to zork
   replace: 
     path: "{{ general.user_home }}/.bash_profile"
     regexp: "BASH_IT_THEME='bobby'"
     replace: "BASH_IT_THEME='zork'"
     
-# Source .bashrc into .bash_profile
-# This needs to be cleaned up
-- name: Create new .bash_profile and source .bashrc
+- name: Create new .bashrc
   shell: |
     touch "{{ general.user_home }}"/.bashrc
-    echo 'if [ -f "{{ general.user_home }}"/.bashrc ]; then' >> "{{ general.user_home }}"/.bash_profile_new
-    echo '  . "{{ general.user_home }}"/.bashrc' >> "{{ general.user_home }}"/.bash_profile_new
-    echo 'fi' >> "{{ general.user_home }}"/.bash_profile_new
-    echo '' >> "{{ general.user_home }}"/.bash_profile_new
+    echo "#!/usr/bin/env bash" >> "{{ general.user_home }}"/.bashrc
+    echo "" >> "{{ general.user_home }}"/.bashrc
+    echo "#!/usr/bin/env bash" >> "{{ general.user_home }}"/.bash_profile_new
+    echo "" >> "{{ general.user_home }}"/.bash_profile_new
+    echo "if [ -f {{ general.user_home }}/.bashrc ]; then" >> "{{ general.user_home }}"/.bash_profile_new
+    echo "  . {{ general.user_home }}/.bashrc" >> "{{ general.user_home }}"/.bash_profile_new
+    echo "fi" >> "{{ general.user_home }}"/.bash_profile_new
+    echo "" >> "{{ general.user_home }}"/.bash_profile_new
+  args:
+    creates: "{{ general.user_home }}/.bashrc"
+
+- name: Remove extra shebang already in .bash_profile
+  replace:
+    path: "{{ general.user_home }}/.bash_profile"
+    regexp: "#!/usr/bin/env bash\n\n"
+    replace: ""
+
+- name: Create new .bash_profile sourcing .bashrc
+  shell: | 
     cat "{{ general.user_home }}"/.bash_profile >> "{{ general.user_home }}"/.bash_profile_new
     rm "{{ general.user_home }}"/.bash_profile
     mv "{{ general.user_home }}"/.bash_profile_new "{{ general.user_home }}"/.bash_profile
     source "{{ general.user_home }}"/.bash_profile
-  args:
-    creates: "{{ general.user_home }}/.bashrc"
 
-# Get tgenv (not maintained in brew)
 - name: Get tgenv
   git:
     repo: 'https://github.com/cunymatthieu/tgenv.git'
@@ -53,15 +55,16 @@
     echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> "{{ general.user_home }}"/.bashrc
     source "{{ general.user_home }}"/.bashrc
 
-- name: Setup tfenv
-  command: tfenv install latest
-
 - name: Setup tgenv
-  command: tgenv install latest
+  command: "{{ general.user_home }}/.tgenv/bin/tgenv install 0.21.9"
+  ignore_errors: yes
+
+- name: Setup tfenv
+  command: "tfenv install 0.12.18"
 
 - name: Setup jenv
   shell: |
-    echo 'eval "$(jenv init -)"' >> {{ general.user_home }}/.bashrc
+    echo 'eval "$(jenv init -)"' >> "{{ general.user_home }}"/.bashrc
     jenv enable-plugin export
     jenv add $(/usr/libexec/java_home)
 

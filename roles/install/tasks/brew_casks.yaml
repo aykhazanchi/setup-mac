@@ -1,9 +1,31 @@
 ---
+# homebrew_cask throwing errors with using var in with_items; this is a workaround for now
 - name: Installing cask packages
   homebrew_cask:
-    name: "{{ brew_casks }}"
-    state: present
+    name: "{{ item }}"
+    state: installed
     install_options: force  # Force install because brew cask fails when app already there
     upgrade_all: "{{ upgrade }}"
   when: homebrew_check.stat.exists
-  with_items: "{{ brew_casks }}"
+  with_items: 
+    - 'firefox'
+    - 'google-chrome'
+    - 'iterm2'
+    - 'lastpass'
+    - 'spotify'
+    - 'menumeters'
+    - 'vlc'
+    - 'itsycal'
+    - 'spectacle'
+    - 'android-studio'
+    - 'visual-studio-code'
+    - 'java'
+    - 'psequel'
+    - 'aws-vault'
+    - 'docker'
+    - 'simplenote'
+    - 'whatsapp'
+    - 'vagrant'
+    - 'vagrant-manager'
+    - 'virtualbox'
+    - 'virtualbox-extension-pack'

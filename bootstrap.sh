@@ -42,3 +42,5 @@ source $HOME/.bash_profile
 # Run ansible to setup mac
 cd ~/workspace/setup-mac
 ansible-playbook -i hosts setup-mac.yaml --verbose
+
+sh dotfiles.sh
