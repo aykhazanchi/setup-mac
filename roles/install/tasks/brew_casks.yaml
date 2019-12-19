@@ -25,6 +25,7 @@
     - 'docker'
     - 'simplenote'
     - 'whatsapp'
+    - 'minikube'
     - 'vagrant'
     - 'vagrant-manager'
     - 'virtualbox'
