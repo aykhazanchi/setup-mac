@@ -49,10 +49,16 @@
 
 - name: Set PATHs and source .bashrc
   shell: |
+    echo '# Bash autocomplete setup' >> "{{ general.user_home }}"/.bashrc
+    echo '[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion' >> "{{ general.user_home }}"/.bashrc
     echo '[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh' >> "{{ general.user_home }}"/.bashrc
     echo 'export PATH="$HOME/.tgenv/bin:$PATH"' >> "{{ general.user_home }}"/.bashrc
     echo 'export PATH="$HOME/.tfenv/bin:$PATH"' >> "{{ general.user_home }}"/.bashrc
     echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> "{{ general.user_home }}"/.bashrc
+    echo 'alias pip="pip3"' >> "{{ general.user_home }}"/.bashrc
+    echo 'alias weather="curl wttr.in?0"' >> "{{ general.user_home }}"/.bashrc
+    echo '# heroku autocomplete setup' >> "{{ general.user_home }}"/.bashrc
+    echo 'HEROKU_AC_BASH_SETUP_PATH=/Users/akzn/Library/Caches/heroku/autocomplete/bash_setup && test -f $HEROKU_AC_BASH_SETUP_PATH && source $HEROKU_AC_BASH_SETUP_PATH;' >> "{{ general.user_home }}"/.bashrc
     source "{{ general.user_home }}"/.bashrc
 
 - name: Setup tgenv
@@ -80,6 +86,7 @@
     echo 'Host *' > {{ general.user_home }}/.ssh/config
     echo '  AddKeysToAgent yes' >> {{ general.user_home }}/.ssh/config
     echo '  UseKeychain yes' >> {{ general.user_home }}/.ssh/config
+    echo '  CanonicalizeHostName Always' >> {{ general.user_home }}/.ssh/config
     echo '  ServerAliveInterval 60' >> {{ general.user_home }}/.ssh/config
     eval "$(ssh-agent -s)"
   args:

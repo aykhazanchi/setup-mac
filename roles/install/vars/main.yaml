@@ -8,6 +8,7 @@ upgrade: false
 brew_taps:
   - 'homebrew/cask-versions'
   - 'homebrew/cask-fonts'
+  - 'heroku/brew'
 
 brew_packages:
   - 'bash-completion'
@@ -28,11 +29,12 @@ brew_packages:
   - 'awscli'
   - 'postgres'
   - 'ansible'
-  - 'minikube'
+  - 'heroku'
   - 'dockutil'
 
 mas_apps:
   - '1091189122' # bear app
+  - '1274495053' # Microsoft To Do
 
 downloads:
   ao:
