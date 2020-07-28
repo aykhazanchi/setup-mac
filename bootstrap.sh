@@ -33,6 +33,7 @@ brew install python
 pip3 install --upgrade pip
 pip3 install --upgrade setuptools
 pip3 install --user ansible
+pip3 install --user boto3
 pip3 install virtualenv
 pip3 install virtualenvwrapper
 
