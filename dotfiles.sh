@@ -143,7 +143,7 @@ find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -dele
 dockutil --remove all
 
 # Add icons to Dock using dockutil utility
-dockutil --add /Applications/Mail.app
+dockutil --add /Applications/Microsoft\ Outlook.app
 dockutil --add /Applications/Calendar.app
 dockutil --add /Applications/Google\ Chrome.app
 dockutil --add /Applications/LastPass.app
@@ -151,15 +151,12 @@ dockutil --add /Applications/WhatsApp.app
 dockutil --add /Applications/News.app
 dockutil --add /Applications/Spotify.app
 dockutil --add /Applications/Simplenote.app
+dockutil --add /Applications/Notion.app
 dockutil --add /Applications/Visual\ Studio\ Code.app
 dockutil --add /Applications/Android\ Studio.app
 dockutil --add /Applications/iTerm.app
-dockutil --add /Applications/Automator.app
-dockutil --add /Applications/Itsycal.app
 dockutil --add /Applications/Docker.app
-dockutil --add /Applications/MenuMeters.app
 dockutil --add /Applications/PSequel.app
-dockutil --add /Applications/Spectacle.app
 dockutil --add /Applications/Vagrant\ Manager.app
 dockutil --add /Applications/VirtualBox.app
 dockutil --add /Applications/Utilities/Activity\ Monitor.app
