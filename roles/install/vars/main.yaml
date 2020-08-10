@@ -31,6 +31,8 @@ brew_packages:
   - 'ansible'
   - 'heroku'
   - 'dockutil'
+  - 'vault'
+  - 'jrnl'
 
 mas_apps:
   - '1091189122' # bear app
