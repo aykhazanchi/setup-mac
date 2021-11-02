@@ -13,7 +13,6 @@ brew_taps:
 brew_packages:
   - 'bash-completion'
   - 'autojump'
-  - 'wp-cli'
   - 'mas'
   - 'jq'
   - 'nmap'
@@ -32,7 +31,6 @@ brew_packages:
   - 'heroku'
   - 'dockutil'
   - 'vault'
-  - 'jrnl'
 
 mas_apps:
   - '1091189122' # bear app
