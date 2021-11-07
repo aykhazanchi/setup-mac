@@ -55,10 +55,11 @@
     echo 'export PATH="$HOME/.tgenv/bin:$PATH"' >> "{{ general.user_home }}"/.bashrc
     echo 'export PATH="$HOME/.tfenv/bin:$PATH"' >> "{{ general.user_home }}"/.bashrc
     echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> "{{ general.user_home }}"/.bashrc
-    echo 'alias pip="pip3"' >> "{{ general.user_home }}"/.bashrc
     echo 'alias weather="curl wttr.in?0"' >> "{{ general.user_home }}"/.bashrc
     echo 'alias my-ip-int="ifconfig -l | xargs -n1 ipconfig getifaddr"' >> "{{ general.user_home }}"/.bashrc
     echo 'alias my-ip-ext="curl ifconfig.me"' >> "{{ general.user_home }}"/.bashrc
+    echo 'export PATH="$(pyenv root)/shims:$PATH"' >> "{{ general.user_home }}"/.bashrc
+    echo 'eval "$(pyenv init -)"' >> "{{ general.user_home }}"/.bashrc
     echo 'ssh-add /Users/akzn/workspace/keys/akzn' >> "{{ general.user_home }}"/.bashrc
     echo '# heroku autocomplete setup' >> "{{ general.user_home }}"/.bashrc
     echo 'HEROKU_AC_BASH_SETUP_PATH=/Users/akzn/Library/Caches/heroku/autocomplete/bash_setup && test -f $HEROKU_AC_BASH_SETUP_PATH && source $HEROKU_AC_BASH_SETUP_PATH;' >> "{{ general.user_home }}"/.bashrc

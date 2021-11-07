@@ -17,7 +17,7 @@ brew_packages:
   - 'jq'
   - 'nmap'
   - 'nomad'
-  - 'pipenv'
+  - 'pyenv'
   - 'rbenv'
   - 'tfenv'
   - 'jenv'
