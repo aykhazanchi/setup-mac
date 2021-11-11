@@ -6,6 +6,7 @@ general:
 upgrade: false
 
 brew_taps:
+  - 'homebrew/core'
   - 'homebrew/cask-versions'
   - 'homebrew/cask-fonts'
   - 'heroku/brew'
@@ -36,8 +37,8 @@ mas_apps:
   - '1091189122' # bear app
   - '1274495053' # Microsoft To Do
 
-downloads:
-  ao:
-    name: Ao
-    url: https://github.com/klaussinani/ao/releases/download/v6.9.0/Ao-6.9.0.dmg
-    dest: "{{general.user_home}}/Downloads/Ao-6.9.0.dmg"
+#downloads:
+#  ao:
+#    name: Ao
+#    url: https://github.com/klaussinani/ao/releases/download/v6.9.0/Ao-6.9.0.dmg
+#    dest: "{{general.user_home}}/Downloads/Ao-6.9.0.dmg"

@@ -13,8 +13,8 @@
 - name: mas apps install
   include: mas.yaml
   
-- name: Setup downloads
-  include: downloads.yaml
+#- name: Setup downloads
+#  include: downloads.yaml
 
 - name: Run through configurations
   include: config.yaml
