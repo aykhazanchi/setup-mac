@@ -34,8 +34,9 @@ brew_packages:
   - 'vault'
 
 mas_apps:
-  - '1091189122' # bear app
+  - '1091189122' # Bear app
   - '1274495053' # Microsoft To Do
+  - '1116599239' # Nord VPN
 
 #downloads:
 #  ao:
