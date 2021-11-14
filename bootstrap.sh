@@ -11,6 +11,9 @@
 # Start
 echo "--- Starting clean setup --- "
 
+# Change shell
+chsh -s /bin/bash
+
 # Install xcode (needed for git)
 xcode-select --install
 
@@ -22,10 +25,10 @@ done
 # Get the repo
 mkdir -p ~/workspace/repos/
 cd ~/workspace/repos
-git clone https://github.com/aykhazanchi/setup-mac.git .
+git clone https://github.com/aykhazanchi/setup-mac.git
 
 # Install homebrew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 # Install python3 for initial setup, later configure pyenv
 brew install python
@@ -38,11 +41,12 @@ pip3 install virtualenv
 pip3 install virtualenvwrapper
 
 # For initial setup only, this will get overwritten eventually
-echo 'export PATH="$HOME/Library/Python/3.7/bin:$PATH"' >> $HOME/.bash_profile
+echo "export PATH=\"\$HOME/Library/Python/$(ls $HOME/Library/Python/)/bin:\$PATH\"" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
 # Run ansible to setup mac
 cd ~/workspace/repos/setup-mac
 ansible-playbook -i hosts setup-mac.yaml --verbose
 
-sh dotfiles.sh
+# Most of it is broken in Monterey. Don't run.
+#sh dotfiles.sh

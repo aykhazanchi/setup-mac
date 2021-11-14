@@ -6,7 +6,7 @@
     depth: 1
 
 - name: Install bash-it
-  command: "sh {{ general.user_home }}/.bash_it/install.sh --silent"
+  command: "bash {{ general.user_home }}/.bash_it/install.sh --silent"
   ignore_errors: yes
 
 - name: Set bash-it theme to zork
@@ -48,6 +48,7 @@
     dest: '{{ general.user_home }}/.tgenv'
 
 - name: Set PATHs and source .bashrc
+  ignore_errors: yes
   shell: |
     echo '# Bash autocomplete setup' >> "{{ general.user_home }}"/.bashrc
     echo '[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion' >> "{{ general.user_home }}"/.bashrc
