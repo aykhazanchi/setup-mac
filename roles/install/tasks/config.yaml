@@ -47,6 +47,12 @@
     repo: 'https://github.com/cunymatthieu/tgenv.git'
     dest: '{{ general.user_home }}/.tgenv'
 
+- name: nvm
+  shell: >
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+  args:
+    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+
 - name: Set PATHs and source .bashrc
   ignore_errors: yes
   shell: |

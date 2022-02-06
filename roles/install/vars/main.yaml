@@ -16,6 +16,7 @@ brew_packages:
   - 'autojump'
   - 'mas'
   - 'jq'
+  - 'ag'
   - 'nmap'
   - 'nomad'
   - 'pyenv'
